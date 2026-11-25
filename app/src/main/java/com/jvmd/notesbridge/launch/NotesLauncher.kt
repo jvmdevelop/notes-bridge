@@ -17,8 +17,8 @@ class NotesLauncher(
         val uri = contentUri(file)
         val candidates =
             listOf(
-                sendIntent(uri, file.name).setPackage(SAMSUNG_NOTES_PACKAGE),
                 viewIntent(uri).setPackage(SAMSUNG_NOTES_PACKAGE),
+                sendIntent(uri, file.name).setPackage(SAMSUNG_NOTES_PACKAGE),
             )
         return candidates.firstOrNull { resolves(it) }
     }

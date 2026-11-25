@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Fixed
+
+- "Open in Samsung Notes" now opens the PDF the same way as "Open with… → Samsung Notes" (`ACTION_VIEW`) instead of attaching it to a new note. Sending (`ACTION_SEND`) is used only if Samsung Notes cannot open PDFs directly.
+
 ## [0.1.0] - 2026-11-25
 
 First public release. The app is functional but experimental: office documents are re-rendered by NotesBridge's own engine, so layouts are approximate.
