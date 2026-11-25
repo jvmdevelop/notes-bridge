@@ -6,9 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-25
+
 ### Fixed
 
 - "Open in Samsung Notes" now opens the PDF the same way as "Open with… → Samsung Notes" (`ACTION_VIEW`) instead of attaching it to a new note. Sending (`ACTION_SEND`) is used only if Samsung Notes cannot open PDFs directly.
+
+### Changed
+
+- Build tooling: vulnerable transitive dependencies of the Gradle build classpath were raised to patched versions. They are not part of the APK.
 
 ## [0.1.0] - 2026-11-25
 
@@ -27,5 +33,6 @@ First public release. The app is functional but experimental: office documents a
 - Automatic deletion of temporary files: inputs right after conversion, PDFs after one hour.
 - English and Russian translations.
 
-[Unreleased]: https://github.com/jvmdevelop/notes-bridge/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/jvmdevelop/notes-bridge/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/jvmdevelop/notes-bridge/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/jvmdevelop/notes-bridge/releases/tag/v0.1.0
