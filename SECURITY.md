@@ -12,7 +12,7 @@ Only the latest release receives security fixes.
 
 Please do not open a public issue for security problems.
 
-Report them privately through GitHub: go to the repository's **Security** tab and choose **Report a vulnerability** ([direct link](https://github.com/jvmdevelop/NotesBridge/security/advisories/new)). Include:
+Report them privately through GitHub: go to the repository's **Security** tab and choose **Report a vulnerability** ([direct link](https://github.com/jvmdevelop/notes-bridge/security/advisories/new)). Include:
 
 - the affected version,
 - a description of the problem and its impact,

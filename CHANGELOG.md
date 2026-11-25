@@ -23,5 +23,5 @@ First public release. The app is functional but experimental: office documents a
 - Automatic deletion of temporary files: inputs right after conversion, PDFs after one hour.
 - English and Russian translations.
 
-[Unreleased]: https://github.com/jvmdevelop/NotesBridge/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/jvmdevelop/NotesBridge/releases/tag/v0.1.0
+[Unreleased]: https://github.com/jvmdevelop/notes-bridge/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/jvmdevelop/notes-bridge/releases/tag/v0.1.0

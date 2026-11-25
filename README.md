@@ -1,8 +1,8 @@
 # NotesBridge
 
-[![CI](https://github.com/jvmdevelop/NotesBridge/actions/workflows/ci.yml/badge.svg)](https://github.com/jvmdevelop/NotesBridge/actions/workflows/ci.yml)
-[![Latest release](https://img.shields.io/github/v/release/jvmdevelop/NotesBridge)](https://github.com/jvmdevelop/NotesBridge/releases/latest)
-[![License: Apache-2.0](https://img.shields.io/github/license/jvmdevelop/NotesBridge)](LICENSE)
+[![CI](https://github.com/jvmdevelop/notes-bridge/actions/workflows/ci.yml/badge.svg)](https://github.com/jvmdevelop/notes-bridge/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/jvmdevelop/notes-bridge)](https://github.com/jvmdevelop/notes-bridge/releases/latest)
+[![License: Apache-2.0](https://img.shields.io/github/license/jvmdevelop/notes-bridge)](LICENSE)
 
 NotesBridge is an Android share target that converts documents to PDF on the device and hands the PDF to Samsung Notes, or to any other app that accepts PDFs.
 
@@ -67,7 +67,7 @@ The table lists what v0.1.0 actually implements and tests. "Approximate" means t
 
 ## Installing the APK
 
-1. Download `NotesBridge-<version>.apk` from the [latest release](https://github.com/jvmdevelop/NotesBridge/releases/latest).
+1. Download `NotesBridge-<version>.apk` from the [latest release](https://github.com/jvmdevelop/notes-bridge/releases/latest).
 2. Open the file on your phone and allow installation from that source when Android asks.
 3. Optional: check the file before installing (see below).
 
@@ -91,8 +91,8 @@ All releases are signed with the same key, so Android installs updates over a pr
 ## Building from source
 
 ```bash
-git clone https://github.com/jvmdevelop/NotesBridge.git
-cd NotesBridge
+git clone https://github.com/jvmdevelop/notes-bridge.git
+cd notes-bridge
 ./gradlew assembleDebug
 ```
 

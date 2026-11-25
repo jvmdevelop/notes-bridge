@@ -51,7 +51,7 @@ Rules for every channel: read the community rules first, post once (no cross-pos
 >
 > To be upfront: it renders documents itself instead of using Office, so layouts are close but not identical, and charts/SmartArt are skipped (the app tells you when it skips something). Old .doc/.ppt files aren't supported.
 >
-> APK and source: https://github.com/jvmdevelop/NotesBridge
+> APK and source: https://github.com/jvmdevelop/notes-bridge
 >
 > I'd really like files that convert badly. If you can share a non-confidential example, open an issue and I'll fix what I can.
 
@@ -72,7 +72,7 @@ Rules for every channel: read the community rules first, post once (no cross-pos
 >
 > Limitations: approximate layouts, no charts/SmartArt, no legacy .doc/.xls/.ppt.
 >
-> GitHub (APK in Releases): https://github.com/jvmdevelop/NotesBridge
+> GitHub (APK in Releases): https://github.com/jvmdevelop/notes-bridge
 >
 > Feedback and sample files that break it are very welcome.
 
@@ -84,7 +84,7 @@ Rules for every channel: read the community rules first, post once (no cross-pos
 
 3/ It's fully offline. Not "we promise not to upload": the app has no internet permission at all. Under 2 MB, Apache-2.0.
 
-4/ Honest caveats: layouts are approximate and charts are skipped. If a file converts badly, I'd love an example → https://github.com/jvmdevelop/NotesBridge
+4/ Honest caveats: layouts are approximate and charts are skipped. If a file converts badly, I'd love an example → https://github.com/jvmdevelop/notes-bridge
 
 ## Draft: Show HN
 
@@ -102,7 +102,7 @@ Rules for every channel: read the community rules first, post once (no cross-pos
 >
 > Limitations: approximate layout, no charts/SmartArt, no legacy binary Office formats. The test corpus is LibreOffice-generated files so far, and I'm looking for real-world files that break it.
 >
-> Source and APK: https://github.com/jvmdevelop/NotesBridge
+> Source and APK: https://github.com/jvmdevelop/notes-bridge
 
 ## Draft: Product Hunt
 
@@ -150,6 +150,6 @@ For each release:
 >
 > What's new: [2–3 user-visible changes].
 > Fixed: [notable fixes, with thanks to reporters].
-> Download: https://github.com/jvmdevelop/NotesBridge/releases/tag/vX.Y.Z
+> Download: https://github.com/jvmdevelop/notes-bridge/releases/tag/vX.Y.Z
 >
 > Still missing: [the most requested thing that is not done yet]. Files that convert badly are always welcome as issues.

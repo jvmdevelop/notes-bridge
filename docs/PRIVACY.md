@@ -41,4 +41,4 @@ Once you send the PDF to another app, that app's privacy policy applies to the P
 
 ## Questions
 
-Open a [discussion](https://github.com/jvmdevelop/NotesBridge/discussions) or an issue. Security problems should be reported privately as described in [SECURITY.md](../SECURITY.md).
+Open a [discussion](https://github.com/jvmdevelop/notes-bridge/discussions) or an issue. Security problems should be reported privately as described in [SECURITY.md](../SECURITY.md).
