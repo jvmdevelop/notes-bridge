@@ -55,15 +55,33 @@ An APK signed with a different key cannot be installed over the official release
 
 ## Release process (maintainers)
 
-Releases are built by GitHub Actions (`.github/workflows/release.yml`) when a tag `vX.Y.Z` is pushed.
+Releases are tagged `vX.Y.Z`. The release workflow (`.github/workflows/release.yml`) supports two signing modes and picks one automatically.
+
+Before either mode:
 
 1. Update `versionName` and `versionCode` in `app/build.gradle.kts`.
 2. Move the entries under `## [Unreleased]` in `CHANGELOG.md` to a new `## [X.Y.Z] - YYYY-MM-DD` section.
-3. Commit, then tag and push: `git tag vX.Y.Z && git push origin vX.Y.Z`.
+3. Commit, push and wait until CI on `main` is green.
 
-The workflow refuses to publish if the tag does not match `versionName`, if `CHANGELOG.md` has no section for the version, if the signing secrets are missing, or if any check fails (formatting, lint, unit tests, instrumented tests on an emulator). On success it attaches the signed APK and `SHA256SUMS.txt` to a GitHub Release whose notes contain the changelog section, the checksum, the signing certificate fingerprint and generated notes.
+### Locally signed releases (current process)
 
-Repository secrets used by the workflow:
+The signing key stays on the maintainer's machine and is not stored on GitHub.
+
+```bash
+set -a; . ~/.config/notesbridge/signing.env; set +a
+./gradlew clean assembleRelease
+cp app/build/outputs/apk/release/app-release.apk NotesBridge-X.Y.Z.apk
+apksigner verify --print-certs NotesBridge-X.Y.Z.apk
+sha256sum NotesBridge-X.Y.Z.apk > SHA256SUMS.txt
+gh release create vX.Y.Z NotesBridge-X.Y.Z.apk SHA256SUMS.txt \
+  --target "$(git rev-parse HEAD)" --title "NotesBridge X.Y.Z" --notes-file release-notes.md --generate-notes
+```
+
+Creating the release also creates the tag, which starts the release workflow. Without signing secrets it runs every check on the tagged commit (formatting, lint, unit tests, instrumented tests), then downloads the published APK and fails unless the checksum matches `SHA256SUMS.txt` and the APK is signed with the official certificate. A release can be re-verified at any time with **Actions → Release → Run workflow** and its tag.
+
+### CI-signed releases (optional)
+
+If the four repository secrets below are set, pushing a tag (`git tag vX.Y.Z && git push origin vX.Y.Z`) is enough: the workflow runs all checks, builds and signs the APK, verifies the signature, and publishes the release with `SHA256SUMS.txt`, the changelog section, the certificate fingerprint and generated notes. Nothing is published if any check fails.
 
 | Secret | Content |
 | --- | --- |
@@ -71,6 +89,8 @@ Repository secrets used by the workflow:
 | `NOTESBRIDGE_KEYSTORE_PASSWORD` | Keystore password |
 | `NOTESBRIDGE_KEY_ALIAS` | Key alias |
 | `NOTESBRIDGE_KEY_PASSWORD` | Key password |
+
+In both modes the workflow fails if the tag does not match `versionName` or `CHANGELOG.md` has no section for the version.
 
 ## Test fixtures
 

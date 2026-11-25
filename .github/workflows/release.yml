@@ -3,51 +3,108 @@ name: Release
 on:
   push:
     tags: ["v*.*.*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing release tag to verify, for example v0.1.0"
+        required: true
 
 permissions:
   contents: read
 
+env:
+  TAG: ${{ inputs.tag || github.ref_name }}
+  RELEASE_CERTIFICATE_SHA256: "0524d27c255f8017c6d4a0015b6853950cf3969dee73c1a67b229ad90c91336a"
+
 concurrency:
-  group: release-${{ github.ref }}
+  group: release-${{ inputs.tag || github.ref }}
   cancel-in-progress: false
 
 jobs:
   verify:
-    name: Verify version, changelog and secrets
+    name: Verify version and changelog
     runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.mode.outputs.mode }}
     steps:
       - uses: actions/checkout@v7
-      - name: Check release prerequisites
+        with:
+          ref: ${{ env.TAG }}
+      - name: Check version and changelog
+        run: |
+          version="${TAG#v}"
+          grep -q "versionName = \"${version}\"" app/build.gradle.kts || { echo "::error::Tag ${TAG} does not match versionName in app/build.gradle.kts"; exit 1; }
+          grep -q "^## \[${version}\]" CHANGELOG.md || { echo "::error::CHANGELOG.md has no section for ${version}"; exit 1; }
+      - name: Choose signing mode
+        id: mode
         env:
-          TAG: ${{ github.ref_name }}
           NOTESBRIDGE_KEYSTORE_BASE64: ${{ secrets.NOTESBRIDGE_KEYSTORE_BASE64 }}
           NOTESBRIDGE_KEYSTORE_PASSWORD: ${{ secrets.NOTESBRIDGE_KEYSTORE_PASSWORD }}
           NOTESBRIDGE_KEY_ALIAS: ${{ secrets.NOTESBRIDGE_KEY_ALIAS }}
           NOTESBRIDGE_KEY_PASSWORD: ${{ secrets.NOTESBRIDGE_KEY_PASSWORD }}
         run: |
-          version="${TAG#v}"
-          grep -q "versionName = \"${version}\"" app/build.gradle.kts || { echo "::error::Tag ${TAG} does not match versionName in app/build.gradle.kts"; exit 1; }
-          grep -q "^## \[${version}\]" CHANGELOG.md || { echo "::error::CHANGELOG.md has no section for ${version}"; exit 1; }
+          mode=ci-signed
           for name in NOTESBRIDGE_KEYSTORE_BASE64 NOTESBRIDGE_KEYSTORE_PASSWORD NOTESBRIDGE_KEY_ALIAS NOTESBRIDGE_KEY_PASSWORD; do
-            [ -n "${!name}" ] || { echo "::error::Repository secret ${name} is not set"; exit 1; }
+            [ -n "${!name}" ] || mode=locally-signed
           done
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then mode=locally-signed; fi
+          echo "mode=${mode}" >> "$GITHUB_OUTPUT"
+          echo "Release mode: ${mode}" >> "$GITHUB_STEP_SUMMARY"
 
   checks:
     name: Checks
     needs: verify
     uses: ./.github/workflows/ci.yml
+    with:
+      ref: ${{ inputs.tag || github.ref }}
     permissions:
       contents: write
 
+  verify-local-release:
+    name: Verify locally signed release
+    needs: [verify, checks]
+    if: needs.verify.outputs.mode == 'locally-signed'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="${TAG#v}"
+          for attempt in 1 2 3 4 5 6; do
+            if gh release download "$TAG" -R "$GITHUB_REPOSITORY" -p "NotesBridge-${version}.apk" -p SHA256SUMS.txt --clobber; then
+              exit 0
+            fi
+            sleep 20
+          done
+          echo "::error::Release ${TAG} with NotesBridge-${version}.apk and SHA256SUMS.txt was not found. Without signing secrets, build and sign the APK locally and publish it with gh release create (see docs/BUILD.md)."
+          exit 1
+      - name: Verify checksum and signing certificate
+        run: |
+          version="${TAG#v}"
+          apk="NotesBridge-${version}.apk"
+          sha256sum -c SHA256SUMS.txt
+          apksigner="$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -n 1)/apksigner"
+          "$apksigner" verify --verbose "$apk"
+          actual="$("$apksigner" verify --print-certs "$apk" | grep -m1 'certificate SHA-256 digest' | awk '{print $NF}')"
+          if [ "$actual" != "$RELEASE_CERTIFICATE_SHA256" ]; then
+            echo "::error::${apk} is signed with certificate ${actual}, expected ${RELEASE_CERTIFICATE_SHA256}"
+            exit 1
+          fi
+          echo "${apk}: checksum and signing certificate verified" >> "$GITHUB_STEP_SUMMARY"
+
   publish:
     name: Build signed APK and publish release
-    needs: checks
+    needs: [verify, checks]
+    if: needs.verify.outputs.mode == 'ci-signed'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ env.TAG }}
       - uses: actions/setup-java@v6
         with:
           distribution: temurin
@@ -71,8 +128,6 @@ jobs:
         if: always()
         run: rm -f "$RUNNER_TEMP/notesbridge-release.jks"
       - name: Verify signature and prepare assets
-        env:
-          TAG: ${{ github.ref_name }}
         run: |
           version="${TAG#v}"
           apksigner="$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -n 1)/apksigner"
@@ -123,7 +178,6 @@ jobs:
       - name: Create GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ github.ref_name }}
         run: |
           version="${TAG#v}"
           gh release create "$TAG" "NotesBridge-${version}.apk" SHA256SUMS.txt \
