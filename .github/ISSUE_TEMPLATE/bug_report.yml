@@ -1,0 +1,36 @@
+name: Bug report
+description: Something other than conversion quality is broken (crash, sharing, Samsung Notes hand-off, UI).
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open …
+        2. Tap Share → Convert to PDF
+        3. …
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+  - type: input
+    id: version
+    attributes:
+      label: NotesBridge version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device, Android version and Samsung Notes version
+      placeholder: e.g. Galaxy S24, One UI 7 / Android 15, Samsung Notes 4.4

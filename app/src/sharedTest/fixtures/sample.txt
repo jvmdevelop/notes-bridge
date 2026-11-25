@@ -1,0 +1,4 @@
+Plain text line one
+Строка на кириллице
+
+After blank line

@@ -1,0 +1,61 @@
+<resources>
+    <string name="share_target_label">Конвертировать в PDF</string>
+    <string name="converting">Конвертация в PDF…</string>
+    <string name="preparing">Подготовка…</string>
+    <string name="progress_importing">Чтение файла %1$d из %2$d…</string>
+    <string name="progress_converting">%1$s · страница %2$d</string>
+    <string name="progress_converting_multiple">Файл %1$d из %2$d: %3$s · страница %4$d</string>
+    <string name="progress_writing">Запись PDF…</string>
+    <string name="pdf_ready">PDF готов</string>
+    <plurals name="pdf_summary">
+        <item quantity="one">%1$s · %2$d страница</item>
+        <item quantity="few">%1$s · %2$d страницы</item>
+        <item quantity="many">%1$s · %2$d страниц</item>
+        <item quantity="other">%1$s · %2$d страницы</item>
+    </plurals>
+    <string name="conversion_failed">Не удалось конвертировать</string>
+    <string name="open_in_samsung_notes">Открыть в Samsung Notes</string>
+    <string name="open_with">Открыть с помощью…</string>
+    <string name="share_pdf">Поделиться</string>
+    <string name="save_pdf">Сохранить</string>
+    <string name="cancel">Отмена</string>
+    <string name="close">Закрыть</string>
+    <string name="saved">PDF сохранён</string>
+    <string name="save_failed">Не удалось сохранить PDF</string>
+    <string name="no_app_found">Нет приложения, которое может открыть этот PDF</string>
+
+    <string name="error_legacy_office">%1$s — файл старого формата Office (.doc, .xls или .ppt). Сохраните его как .docx, .xlsx или .pptx и повторите попытку.</string>
+    <string name="error_password_protected">%1$s защищён паролем. Снимите пароль и повторите попытку.</string>
+    <string name="error_already_pdf">%1$s уже является PDF. Отправьте его в Samsung Notes напрямую.</string>
+    <string name="error_tiff">%1$s — изображение TIFF, этот формат пока не поддерживается. Сначала преобразуйте его в PNG или JPEG.</string>
+    <string name="error_content_mismatch">Содержимое %1$s не соответствует типу файла.</string>
+    <string name="error_corrupted_named">Файл %1$s повреждён или загружен не полностью.</string>
+    <string name="error_unknown_format">Формат файла %1$s не поддерживается.</string>
+    <string name="error_too_large">Размер документа превышает ограничение %1$s.</string>
+    <string name="error_too_complex">Документ слишком большой или сложный для конвертации на этом устройстве.</string>
+    <string name="error_corrupted">Документ повреждён или использует возможности, которые не удаётся прочитать.</string>
+    <string name="error_drm">Документ защищён DRM и не может быть конвертирован.</string>
+    <string name="error_empty">В документе нет содержимого для конвертации.</string>
+    <string name="error_read_failed">Не удалось прочитать документ. Возможно, приложение-отправитель отозвало доступ.</string>
+    <string name="error_no_input">Документ не получен.</string>
+    <plurals name="error_too_many_files">
+        <item quantity="one">За один раз можно конвертировать не более %1$d файла.</item>
+        <item quantity="few">За один раз можно конвертировать не более %1$d файлов.</item>
+        <item quantity="many">За один раз можно конвертировать не более %1$d файлов.</item>
+        <item quantity="other">За один раз можно конвертировать не более %1$d файла.</item>
+    </plurals>
+    <string name="error_unexpected">Во время конвертации произошла непредвиденная ошибка.</string>
+
+    <string name="warning_embedded_objects">Диаграммы, графики и встроенные объекты не включены.</string>
+    <string name="warning_external_resources">Связанные файлы и изображения из интернета не загружены.</string>
+    <string name="warning_images">Некоторые изображения имеют формат, который не удалось отобразить.</string>
+    <string name="warning_truncated">Документ сокращён, чтобы уложиться в ограничения конвертации.</string>
+    <string name="warning_hidden">Скрытые слайды, листы или текст не включены.</string>
+
+    <string name="main_intro">Конвертирует документы в PDF прямо на устройстве, чтобы их можно было подписывать и комментировать в Samsung Notes или другом приложении для PDF.</string>
+    <string name="main_how_title">Как пользоваться</string>
+    <string name="main_how_steps">1. Откройте документ в любом приложении и нажмите «Поделиться».\n2. Выберите «Конвертировать в PDF» (NotesBridge).\n3. Нажмите «Открыть в Samsung Notes» или выберите другое приложение.</string>
+    <string name="main_pick">Выбрать файлы для конвертации</string>
+    <string name="main_formats_title">Поддерживаемые форматы</string>
+    <string name="main_privacy">Документы конвертируются локально. У NotesBridge нет доступа к интернету, временные файлы удаляются автоматически.</string>
+</resources>

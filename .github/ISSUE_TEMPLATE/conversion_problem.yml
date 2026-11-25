@@ -1,0 +1,49 @@
+name: Conversion problem
+description: A document converts incorrectly, partially, or fails to convert.
+labels: ["conversion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please do not attach confidential documents. A small file that reproduces the problem is the most helpful thing you can provide.
+  - type: dropdown
+    id: format
+    attributes:
+      label: Format
+      options: [PPTX, DOCX, XLSX, ODP, ODT, ODS, RTF, TXT, CSV/TSV, Markdown, HTML, EPUB, Image, SVG, Other]
+    validations:
+      required: true
+  - type: input
+    id: source-app
+    attributes:
+      label: App that created the file
+      placeholder: e.g. PowerPoint 365, Google Slides export, LibreOffice 25.8
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong?
+      description: Missing text, wrong layout, missing images, crash, error message…
+    validations:
+      required: true
+  - type: input
+    id: detail
+    attributes:
+      label: Error detail line
+      description: If the dialog showed an error, copy the line that starts with "NotesBridge".
+  - type: input
+    id: version
+    attributes:
+      label: NotesBridge version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device and Android version
+      placeholder: e.g. Galaxy Tab S9, One UI 7 / Android 15
+  - type: textarea
+    id: sample
+    attributes:
+      label: Sample file
+      description: Attach a non-confidential file that shows the problem, or describe how to create one.

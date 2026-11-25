@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name" translatable="false">NotesBridge</string>
+    <string name="share_target_label">Convert to PDF</string>
+    <string name="converting">Converting to PDF…</string>
+    <string name="preparing">Preparing…</string>
+    <string name="progress_importing">Reading file %1$d of %2$d…</string>
+    <string name="progress_converting">%1$s · page %2$d</string>
+    <string name="progress_converting_multiple">File %1$d of %2$d: %3$s · page %4$d</string>
+    <string name="progress_writing">Writing PDF…</string>
+    <string name="pdf_ready">PDF is ready</string>
+    <plurals name="pdf_summary">
+        <item quantity="one">%1$s · %2$d page</item>
+        <item quantity="other">%1$s · %2$d pages</item>
+    </plurals>
+    <string name="conversion_failed">Conversion failed</string>
+    <string name="open_in_samsung_notes">Open in Samsung Notes</string>
+    <string name="open_with">Open with…</string>
+    <string name="share_pdf">Share</string>
+    <string name="save_pdf">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="close">Close</string>
+    <string name="saved">PDF saved</string>
+    <string name="save_failed">The PDF could not be saved</string>
+    <string name="no_app_found">No app can open this PDF</string>
+
+    <string name="error_legacy_office">%1$s is a legacy Office file (.doc, .xls or .ppt). Save it as .docx, .xlsx or .pptx and try again.</string>
+    <string name="error_password_protected">%1$s is password-protected. Remove the password and try again.</string>
+    <string name="error_already_pdf">%1$s is already a PDF. Share it to Samsung Notes directly.</string>
+    <string name="error_tiff">%1$s is a TIFF image, which is not supported yet. Convert it to PNG or JPEG first.</string>
+    <string name="error_content_mismatch">The content of %1$s does not match its file type.</string>
+    <string name="error_corrupted_named">%1$s appears to be damaged or incomplete.</string>
+    <string name="error_unknown_format">The format of %1$s is not supported.</string>
+    <string name="error_too_large">The document is larger than the %1$s limit.</string>
+    <string name="error_too_complex">The document is too large or complex to convert on this device.</string>
+    <string name="error_corrupted">The document appears to be damaged or uses features that cannot be read.</string>
+    <string name="error_drm">The document is protected by DRM and cannot be converted.</string>
+    <string name="error_empty">The document has no content to convert.</string>
+    <string name="error_read_failed">The document could not be read. The sending app may have revoked access.</string>
+    <string name="error_no_input">No document was received.</string>
+    <plurals name="error_too_many_files">
+        <item quantity="one">You can convert up to %1$d file at once.</item>
+        <item quantity="other">You can convert up to %1$d files at once.</item>
+    </plurals>
+    <string name="error_unexpected">An unexpected error occurred during conversion.</string>
+
+    <string name="warning_embedded_objects">Charts, diagrams or embedded objects were not included.</string>
+    <string name="warning_external_resources">Linked files and web images were not loaded.</string>
+    <string name="warning_images">Some images use formats that could not be rendered.</string>
+    <string name="warning_truncated">The document was shortened to stay within conversion limits.</string>
+    <string name="warning_hidden">Hidden slides, sheets or text were left out.</string>
+
+    <string name="main_intro">Converts documents to PDF on your device so you can annotate them in Samsung Notes or any other PDF app.</string>
+    <string name="main_how_title">How to use</string>
+    <string name="main_how_steps">1. Open a document in any app and tap Share.\n2. Choose \"Convert to PDF\" (NotesBridge).\n3. Tap \"Open in Samsung Notes\", or pick another app.</string>
+    <string name="main_pick">Choose files to convert</string>
+    <string name="main_formats_title">Supported formats</string>
+    <string name="main_privacy">Documents are converted locally. NotesBridge has no internet permission and deletes temporary files automatically.</string>
+</resources>
